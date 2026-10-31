@@ -277,6 +277,14 @@
   </div>
 </section>
 
+<!-- Welcome video -->
+<section class="sec" id="video" style="display:none">
+  <div class="wrap">
+    <div class="head"><div class="k">Watch</div><h2 id="videoTitle">A welcome from Golden Cross</h2></div>
+    <div id="videoBox" style="max-width:820px;margin:10px auto 0;position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;box-shadow:0 18px 44px rgba(11,42,92,.14);background:#000"></div>
+  </div>
+</section>
+
 <!-- Values -->
 <section class="sec soft">
   <div class="wrap">
@@ -522,11 +530,30 @@ function startReel(){
   var x=0;
   (function tick(){ if(!paused){ x+=0.5; var half=track.scrollWidth/2; if(half>0&&x>=half)x-=half; track.style.transform='translateX('+(-x)+'px)'; } requestAnimationFrame(tick); })();
 }
-/* Apply admin-uploaded images (headshot + reel overrides), from the shared store. */
+/* Welcome video — accepts a YouTube/Vimeo link, a raw embed code, or an uploaded/direct video file URL. */
+function videoEmbed(url){
+  url=String(url||'').trim(); if(!url) return '';
+  if(/<iframe/i.test(url)) return url; // raw embed code pasted by admin
+  var yt=url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/|live\/|v\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/);
+  if(yt) return ifrm('https://www.youtube.com/embed/'+yt[1]);
+  var vm=url.match(/(?:vimeo\.com\/(?:video\/)?|player\.vimeo\.com\/video\/)(\d+)/);
+  if(vm) return ifrm('https://player.vimeo.com/video/'+vm[1]);
+  // otherwise treat as a direct video file (mp4/webm/mov/…)
+  return '<video controls playsinline preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;background:#000"><source src="'+esc(url)+'">Your browser does not support the video.</video>';
+}
+function ifrm(src){return '<iframe src="'+esc(src)+'" style="position:absolute;inset:0;width:100%;height:100%;border:0" title="Welcome video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';}
+function applyVideo(v){
+  var sec=document.getElementById('video'),box=document.getElementById('videoBox'); if(!sec||!box) return;
+  v=v||{}; var html=videoEmbed(v.url);
+  if(html){ box.innerHTML=html; if(v.title){var t=document.getElementById('videoTitle');if(t)t.textContent=v.title;} sec.style.display=''; }
+  else { box.innerHTML=''; sec.style.display='none'; }
+}
+/* Apply admin-uploaded images (headshot + reel overrides) + the welcome video, from the shared store. */
 function applyImages(im){
   if(!im) return;
   if(im.headshot){ ['heroPhoto','aboutPhoto'].forEach(function(id){var el=document.getElementById(id);if(el)el.src=im.headshot;}); }
   renderReel(im.reel||null);
+  applyVideo(im.video);
 }
 
 applyCfg();payToggle();

@@ -138,8 +138,8 @@
 
   <div class="pane" id="p-photos">
     <div class="card">
-      <h3 style="font-size:17px;margin-bottom:4px">Photos</h3>
-      <p class="note">Upload the provider headshot and the "A glimpse of our care" reel photos. Upload from <b>any device</b> (your phone's camera or gallery works) — changes publish to the live site for everyone automatically.</p>
+      <h3 style="font-size:17px;margin-bottom:4px">Photos &amp; video</h3>
+      <p class="note">Add a <b>welcome video</b> (paste a YouTube/Vimeo link, or upload a video file), and upload the provider headshot and the "A glimpse of our care" reel photos. Upload from <b>any device</b> (your phone's camera or gallery works) — changes publish to the live site for everyone automatically.</p>
       <div id="photoList" style="margin-top:14px"></div>
     </div>
   </div>
@@ -235,9 +235,44 @@ function photoRow(kind,cap,def,cur){
     +'<div style="display:flex;gap:8px;margin-top:7px;flex-wrap:wrap"><label class="btn btn-gold" style="cursor:pointer;padding:8px 15px;font-size:13px">Upload<input type="file" accept="image/*" style="display:none" onchange="uploadSlot(\''+kind+'\',\''+esc(cap).replace(/'/g,"\\'")+'\',this)"></label>'
     +(over?'<button class="btn btn-ghost" style="padding:8px 14px;font-size:13px" onclick="resetSlot(\''+kind+'\',\''+esc(cap).replace(/'/g,"\\'")+'\')">Reset</button>':'')+'</div></div></div>';
 }
+function isEmbed(u){u=String(u||'');return /youtu\.?be|vimeo\.com|<iframe/i.test(u);}
+function videoBlock(){
+  var v=IMAGES.video||{}; var has=!!v.url;
+  var preview='';
+  if(has){
+    if(isEmbed(v.url)) preview='<div class="note" style="margin-top:9px">✓ Linked video set (YouTube/Vimeo/embed) — shows in the “Watch” section on your site.</div>';
+    else preview='<video src="'+esc(v.url)+'" controls preload="metadata" style="width:100%;max-width:360px;border-radius:10px;margin-top:9px;border:1px solid var(--line);background:#000"></video>';
+  }
+  return '<div style="border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:9px">'
+    +'<label>Video heading <span class="hint">(shown above the video)</span></label><input id="vid_title" value="'+esc(v.title||'')+'" placeholder="A welcome from Golden Cross">'
+    +'<label style="margin-top:10px">Paste a YouTube or Vimeo link <span class="hint">(or any video URL / embed code)</span></label>'
+    +'<div style="display:flex;gap:8px;flex-wrap:wrap"><input id="vid_url" value="'+esc(isEmbed(v.url)?v.url:'')+'" placeholder="https://youtu.be/…  or  https://vimeo.com/…" style="flex:1;min-width:220px"><button class="btn btn-navy" onclick="saveVideoLink()">Save link</button></div>'
+    +'<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px"><label class="btn btn-gold" style="cursor:pointer;padding:8px 15px;font-size:13px">Upload a video file<input type="file" accept="video/*" style="display:none" onchange="uploadVideo(this)"></label><span class="hint">MP4, MOV, WebM… keep under ~50MB</span>'
+    +(has?'<button class="btn btn-ghost" style="padding:8px 14px;font-size:13px" onclick="removeVideo()">Remove video</button>':'')+'</div>'
+    +preview+'</div>';
+}
+function saveVideoLink(){
+  var url=val('vid_url').trim(), title=val('vid_title').trim(); var v=IMAGES.video||{};
+  if(!url && !v.url){setMsg('Paste a video link or upload a file first.','bad');return;}
+  IMAGES.video={url:url||v.url,title:title}; saveImages(); renderPhotos(); setMsg('✓ Video saved & published to all devices.','ok');
+}
+function uploadVideo(input){
+  var f=input.files&&input.files[0]; if(!f){return;} input.value='';
+  if(!window.GCSync){setMsg('Video sync is unavailable right now.','bad');return;}
+  if(f.size>52428800 && !confirm('This file is over ~50MB and may fail to upload or load slowly. For long videos a YouTube/Vimeo link works better. Upload anyway?'))return;
+  var title=val('vid_title').trim();
+  setMsg('Uploading video… this can take a moment.','');
+  var ext=(String(f.name).match(/\.[a-z0-9]+$/i)||['.mp4'])[0];
+  GCSync.uploadPhoto('welcome-video-'+Date.now()+ext,f).then(function(url){
+    if(!url){setMsg('Upload failed — the file may be too large (keep under ~50MB) or try again.','bad');return;}
+    IMAGES.video={url:url,title:title}; saveImages(); renderPhotos(); setMsg('✓ Video published to all devices.','ok');
+  });
+}
+function removeVideo(){ if(IMAGES.video)delete IMAGES.video; saveImages(); renderPhotos(); setMsg('Video removed.','ok'); }
 function renderPhotos(){
   var el=document.getElementById('photoList'); if(!el) return;
-  var h='<div style="font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin:4px 0 8px">Provider headshot</div>';
+  var h='<div style="font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin:4px 0 8px">Welcome video</div>'+videoBlock();
+  h+='<div style="font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin:16px 0 8px">Provider headshot</div>';
   h+=photoRow('headshot','Headshot (hero &amp; about)','assets/patricia.png',IMAGES.headshot);
   h+='<div style="font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin:16px 0 8px">Care reel photos</div>';
   REEL_DEF.forEach(function(r){ h+=photoRow('reel',r[0],r[1],(IMAGES.reel&&IMAGES.reel[r[0]])); });
