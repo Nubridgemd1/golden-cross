@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golden Cross Mental Health &amp; Behavioral Center — Katy, TX</title>
+<meta name="description" content="Golden Cross Mental Health and Behavioral Center — compassionate psychiatric care in Katy, TX and via telehealth. Psychiatric evaluations, medication management, therapy & counseling for children, adolescents and adults. Patricia Ayika, PMHNP-BC.">
+<meta property="og:title" content="Golden Cross Mental Health &amp; Behavioral Center">
+<meta property="og:description" content="Compassionate care for a brighter tomorrow — psychiatric care in Katy, TX and via telehealth.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0b2a5c; --navy2:#123c7e; --navy3:#1b4ea0; --deep:#071d40;
+    --gold:#c79a2a; --gold2:#e3bf5e; --gold-soft:#f7edcf;
+    --ink:#1b2a41; --ink3:#5c6b82; --line:#e6ebf3; --bg:#ffffff; --soft:#f5f8fd; --cream:#fcfaf4;
+    --ff-d:'Playfair Display',Georgia,serif; --ff-b:'Montserrat',system-ui,Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:var(--ff-b);color:var(--ink);background:var(--bg);line-height:1.65}
+  a{text-decoration:none;color:inherit}
+  img{max-width:100%;display:block}
+  h1,h2,h3,h4{font-family:var(--ff-d);color:var(--navy);line-height:1.15;font-weight:700}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:15px;border-radius:40px;padding:13px 26px;cursor:pointer;border:0;transition:.18s;font-family:var(--ff-b)}
+  .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#3a2d06;box-shadow:0 10px 24px rgba(199,154,42,.3)}
+  .btn-gold:hover{filter:brightness(1.05);transform:translateY(-1px)}
+  .btn-navy{background:var(--navy);color:#fff}.btn-navy:hover{background:var(--navy2)}
+  .btn-ghost{background:transparent;border:1.6px solid rgba(255,255,255,.5);color:#fff}.btn-ghost:hover{background:rgba(255,255,255,.12)}
+  .btn-outline{background:#fff;border:1.6px solid var(--line);color:var(--navy)}
+
+  /* ── header ── */
+  header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:78px;gap:16px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{width:48px;height:48px;flex:none}
+  .brand .bt b{font-family:var(--ff-d);font-size:17px;color:var(--navy);display:block;line-height:1.05;font-weight:800}
+  .brand .bt b em{color:var(--gold);font-style:normal}
+  .brand .bt span{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+  nav.links{display:flex;gap:26px;align-items:center}
+  nav.links a{font-size:14.5px;font-weight:500;color:var(--ink)}
+  nav.links a:hover{color:var(--gold)}
+  .navcta{display:flex;align-items:center;gap:12px}
+  .navcta .ph{font-size:13px;color:var(--ink3)}
+  .navcta .ph b{display:block;color:var(--navy);font-size:15px}
+  .burger{display:none;background:none;border:0;cursor:pointer;flex-direction:column;gap:5px}
+  .burger span{width:24px;height:2.4px;background:var(--navy);border-radius:2px}
+  @media(max-width:960px){nav.links,.navcta .ph{display:none}.burger{display:flex}}
+  .mobmenu{display:none;flex-direction:column;background:#fff;border-bottom:1px solid var(--line);padding:10px 24px 18px}
+  .mobmenu.open{display:flex}
+  .mobmenu a{padding:11px 0;border-bottom:1px solid var(--line);font-weight:500}
+
+  /* ── hero ── */
+  .hero{background:radial-gradient(70% 90% at 85% 10%,#17439a 0%,var(--navy) 55%,var(--deep) 100%);color:#fff;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;left:-120px;bottom:-140px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(199,154,42,.22),transparent 65%)}
+  .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding:70px 24px 76px;position:relative;z-index:2}
+  .eyebrow{display:inline-block;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2);font-weight:700;border:1px solid rgba(227,191,94,.4);border-radius:30px;padding:7px 16px;margin-bottom:22px}
+  .hero h1{color:#fff;font-size:clamp(32px,4.6vw,52px);font-weight:800}
+  .hero h1 em{color:var(--gold2);font-style:italic}
+  .hero p{font-size:18px;color:rgba(255,255,255,.85);max-width:52ch;margin:20px 0 30px;font-weight:300}
+  .hero .cta{display:flex;gap:13px;flex-wrap:wrap}
+  .trust{display:flex;gap:26px 40px;flex-wrap:wrap;margin-top:40px;padding-top:28px;border-top:1px solid rgba(255,255,255,.14)}
+  .trust div span{display:block;font-size:12.5px;color:rgba(255,255,255,.7)}
+  .trust div b{font-family:var(--ff-d);font-size:19px;color:#fff;font-weight:600}
+  .portrait{position:relative;justify-self:end}
+  .portrait .frame{border-radius:20px;overflow:hidden;border:4px solid rgba(227,191,94,.6);box-shadow:0 34px 70px rgba(0,0,0,.45);max-width:380px}
+  .portrait img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top center}
+  .portrait .cap{position:absolute;left:14px;bottom:14px;right:14px;background:rgba(7,29,64,.78);backdrop-filter:blur(4px);border-radius:12px;padding:11px 15px}
+  .portrait .cap b{font-family:var(--ff-d);color:#fff;font-size:16px;display:block}
+  .portrait .cap span{font-size:12px;color:var(--gold2);letter-spacing:.04em}
+  @media(max-width:880px){.hero .wrap{grid-template-columns:1fr;gap:34px}.portrait{justify-self:center}.portrait .frame{max-width:300px}}
+
+  /* ── sections ── */
+  .sec{padding:84px 0}
+  .sec.soft{background:var(--soft)}
+  .sec.cream{background:var(--cream)}
+  .head{text-align:center;max-width:720px;margin:0 auto 54px}
+  .head .k{font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:700}
+  .head h2{font-size:clamp(28px,3.6vw,40px);margin:12px 0}
+  .head p{color:var(--ink3);font-size:17px}
+
+  /* about + mission */
+  .about{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:center}
+  @media(max-width:860px){.about{grid-template-columns:1fr;gap:30px}}
+  .about .ph{border-radius:18px;overflow:hidden;box-shadow:0 24px 54px rgba(11,42,92,.18);border:1px solid var(--line)}
+  .about .ph img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top center}
+  .about h2{font-size:clamp(26px,3.4vw,38px);margin-bottom:6px}
+  .about .role{color:var(--gold);font-weight:700;letter-spacing:.04em;margin-bottom:14px}
+  .about p{color:var(--ink3);font-size:16px;margin-bottom:14px}
+  .mission{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-radius:18px;padding:30px 32px;margin-top:26px}
+  .mission .k{color:var(--gold2);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700}
+  .mission h3{color:#fff;font-size:21px;margin:8px 0 10px}
+  .mission p{color:rgba(255,255,255,.88);font-size:15.5px;margin:0}
+
+  /* values */
+  .values{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px}
+  @media(max-width:720px){.values{grid-template-columns:1fr 1fr}}
+  .value{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 20px;text-align:center}
+  .value .ic{width:54px;height:54px;border-radius:50%;background:var(--gold-soft);display:grid;place-items:center;margin:0 auto 14px}
+  .value .ic svg{width:26px;height:26px;stroke:var(--gold);fill:none;stroke-width:1.8}
+  .value h4{font-size:18px;margin-bottom:5px}
+  .value p{color:var(--ink3);font-size:13.5px}
+
+  /* services */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:920px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.grid{grid-template-columns:1fr}}
+  .svc{background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px 26px;transition:.2s}
+  .svc:hover{border-color:var(--gold);box-shadow:0 18px 44px rgba(11,42,92,.1);transform:translateY(-4px)}
+  .svc .ic{width:56px;height:56px;border-radius:14px;background:var(--navy);display:grid;place-items:center;margin-bottom:18px}
+  .svc .ic svg{width:28px;height:28px;stroke:var(--gold2);fill:none;stroke-width:1.7}
+  .svc h3{font-size:20px;margin-bottom:9px}
+  .svc p{color:var(--ink3);font-size:14.5px}
+
+  /* conditions */
+  .conds{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  @media(max-width:900px){.conds{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:560px){.conds{grid-template-columns:1fr 1fr}}
+  .cond{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 14px;text-align:center;font-weight:600;font-size:14.5px;color:var(--navy)}
+  .cond span{display:block;width:9px;height:9px;border-radius:50%;background:var(--gold);margin:0 auto 9px}
+
+  /* insurance */
+  .ins{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media(max-width:800px){.ins{grid-template-columns:1fr}}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px 28px}
+  .panel h3{font-size:21px;margin-bottom:8px}
+  .panel p{color:var(--ink3);font-size:15px;margin-bottom:14px}
+  .chips{display:flex;flex-wrap:wrap;gap:9px}
+  .chip{background:var(--gold-soft);color:#6d530d;border-radius:30px;padding:7px 15px;font-size:13.5px;font-weight:600}
+  .pay-list{list-style:none}
+  .pay-list li{display:flex;align-items:center;gap:10px;padding:7px 0;font-size:14.5px;color:var(--ink)}
+  .pay-list li svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:2.6;flex:none}
+
+  /* contact */
+  .contact{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+  @media(max-width:820px){.contact{grid-template-columns:1fr;gap:26px}}
+  .cinfo .ci{display:flex;gap:14px;margin-bottom:20px}
+  .cinfo .ci .ic{width:46px;height:46px;border-radius:12px;background:var(--navy);display:grid;place-items:center;flex:none}
+  .cinfo .ci .ic svg{width:22px;height:22px;stroke:var(--gold2);fill:none;stroke-width:1.8}
+  .cinfo .ci b{display:block;color:var(--navy);font-family:var(--ff-d);font-size:16px}
+  .cinfo .ci span{color:var(--ink3);font-size:14.5px}
+  .cta-band{background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:20px;padding:40px 34px;text-align:center}
+  .cta-band h3{color:#3a2d06;font-size:26px}
+  .cta-band p{color:#5a470f;margin:10px 0 20px;font-weight:500}
+
+  /* footer */
+  footer{background:var(--deep);color:rgba(255,255,255,.7);padding:52px 0 26px;font-size:14px}
+  footer .cols{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:34px;padding-bottom:30px;border-bottom:1px solid rgba(255,255,255,.1)}
+  @media(max-width:760px){footer .cols{grid-template-columns:1fr}}
+  footer h4{color:#fff;font-size:14px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:13px}
+  footer a{display:block;color:rgba(255,255,255,.7);margin:7px 0}footer a:hover{color:var(--gold2)}
+  .crisis{background:rgba(199,154,42,.14);border:1px solid rgba(227,191,94,.3);border-radius:12px;padding:14px 18px;margin:22px 0;color:rgba(255,255,255,.85);font-size:13.5px}
+  .foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-top:20px;font-size:12.5px;color:rgba(255,255,255,.45)}
+
+  /* modal */
+  .modal{position:fixed;inset:0;z-index:60;background:rgba(7,29,64,.6);display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:4vh 16px}
+  .modal.open{display:flex}
+  .mbox{background:#fff;border-radius:18px;max-width:540px;width:100%;margin:auto;box-shadow:0 40px 90px rgba(0,0,0,.4);position:relative}
+  .mx{position:absolute;right:14px;top:12px;width:38px;height:38px;border-radius:50%;border:0;background:var(--soft);color:var(--navy);font-size:22px;cursor:pointer}
+  .mpad{padding:34px 30px 28px}
+  .mpad h3{font-size:23px;margin-bottom:4px}
+  .mpad .sub{color:var(--ink3);font-size:14px;margin-bottom:16px}
+  label{display:block;font-size:13px;font-weight:600;color:var(--navy);margin:12px 0 5px}
+  input,select,textarea{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:10px;font-family:var(--ff-b);font-size:15px;color:var(--ink)}
+  textarea{min-height:66px;resize:vertical}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+  .seg{display:flex;gap:8px;margin-top:6px}
+  .seg button{flex:1;border:1.4px solid var(--line);background:#fff;border-radius:10px;padding:10px;font-weight:600;font-size:13.5px;color:var(--ink3);cursor:pointer;font-family:var(--ff-b)}
+  .seg button.on{border-color:var(--gold);background:var(--gold-soft);color:#6d530d}
+  .mmsg{font-size:13.5px;font-weight:600;margin-top:10px;min-height:18px}
+  .ok{color:#1a9c6b}.bad{color:#c0392b}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <svg class="logo" viewBox="0 0 64 64" aria-label="Golden Cross logo">
+        <circle cx="32" cy="30" r="29" fill="none" stroke="#c79a2a" stroke-width="2.5"/>
+        <path d="M32 6v10M27 11h10" stroke="#c79a2a" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="32" cy="27" r="4.4" fill="#123c7e"/>
+        <path d="M32 31c-7 0-12 4-12 11h24c0-7-5-11-12-11z" fill="#123c7e"/>
+        <path d="M14 40c2-9 9-13 18-13s16 4 18 13" fill="none" stroke="#c79a2a" stroke-width="3.4" stroke-linecap="round"/>
+      </svg>
+      <div class="bt"><b><em>Golden Cross</em><br>Mental Health &amp; Behavioral</b><span>Compassionate care · Katy, TX</span></div>
+    </a>
+    <nav class="links">
+      <a href="#about">About</a><a href="#services">Services</a><a href="#conditions">We Manage</a><a href="#insurance">Insurance</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="navcta">
+      <div class="ph">Call us<br><b id="navPhone">(281) 270‑8451</b></div>
+      <button class="btn btn-gold" onclick="openBook()">Book appointment</button>
+      <button class="burger" onclick="document.getElementById('mob').classList.toggle('open')"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobmenu" id="mob">
+    <a href="#about" onclick="closeMob()">About</a><a href="#services" onclick="closeMob()">Services</a><a href="#conditions" onclick="closeMob()">We Manage</a><a href="#insurance" onclick="closeMob()">Insurance</a><a href="#contact" onclick="closeMob()">Contact</a>
+    <a href="#" onclick="closeMob();openBook();return false" style="color:var(--gold);font-weight:700">Book appointment →</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Golden Cross Mental Health &amp; Behavioral Center</span>
+      <h1>Compassionate care for a <em>brighter tomorrow</em>.</h1>
+      <p id="heroSub">Personalized psychiatric care for children, adolescents and adults — in person in Katy, TX and by secure telehealth across Texas. Your mental health is our priority.</p>
+      <div class="cta">
+        <button class="btn btn-gold" onclick="openBook()">Book an appointment</button>
+        <a class="btn btn-ghost" id="heroCall" href="tel:+12812708451">📞 (281) 270‑8451</a>
+      </div>
+      <div class="trust">
+        <div><b>Telehealth</b><span>&amp; in‑person visits</span></div>
+        <div><b>All ages</b><span>children · teens · adults</span></div>
+        <div><b>Mon–Fri</b><span id="heroHours">9:00 AM – 5:00 PM</span></div>
+        <div><b>Insurance</b><span>&amp; self‑pay welcome</span></div>
+      </div>
+    </div>
+    <figure class="portrait">
+      <div class="frame"><img id="heroPhoto" src="assets/patricia.png" alt="Patricia Ayika, PMHNP-BC"></div>
+      <figcaption class="cap"><b id="heroName">Patricia Ayika, PMHNP‑BC</b><span>Psychiatric Mental Health Nurse Practitioner</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- About + mission -->
+<section class="sec" id="about">
+  <div class="wrap about">
+    <div class="ph"><img id="aboutPhoto" src="assets/patricia.png" alt="Patricia Ayika, PMHNP-BC"></div>
+    <div>
+      <div class="head" style="text-align:left;margin:0 0 6px"><div class="k">Meet your provider</div></div>
+      <h2 id="aboutName">Patricia Ayika, PMHNP‑BC</h2>
+      <div class="role">Psychiatric Mental Health Nurse Practitioner</div>
+      <p id="bio">Patricia Ayika is a board‑certified Psychiatric Mental Health Nurse Practitioner (PMHNP‑BC) caring for children, adolescents and adults. She provides comprehensive psychiatric evaluations, thoughtful medication management, and supportive therapy — always with a warm, collaborative approach that helps each person feel heard, respected and understood.</p>
+      <p>Care is available both in person at our Katy, TX office and through convenient, secure telehealth visits across Texas.</p>
+      <div class="mission">
+        <div class="k">Our mission</div>
+        <h3>Your Mental Health. Our Priority.</h3>
+        <p id="mission">At Golden Cross Mental Health and Behavioral Center, our mission is to provide compassionate, accessible, and evidence‑based mental health care that empowers individuals and families to heal, grow and thrive. We meet every person with dignity and respect, walking alongside them on the path to lasting well‑being.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Values -->
+<section class="sec soft">
+  <div class="wrap">
+    <div class="head"><div class="k">How we care</div><h2>Listen · Support · Empower · Heal</h2><p>The values behind every visit at Golden Cross.</p></div>
+    <div class="values">
+      <div class="value"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 18c-4 0-7-2.7-7-6s3-6 7-6 7 2.7 7 6c0 1.3-.5 2.5-1.3 3.5L18 18l-3.4-1.2c-.8.3-1.7.4-2.6.4z"/></svg></div><h4>Listen</h4><p>We take the time to truly understand your story.</p></div>
+      <div class="value"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10z"/><path d="M9 11h6M12 8v6"/></svg></div><h4>Support</h4><p>Nonjudgmental, personalized care at every step.</p></div>
+      <div class="value"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg></div><h4>Empower</h4><p>Tools and treatment that help you take charge.</p></div>
+      <div class="value"><div class="ic"><svg viewBox="0 0 24 24"><path d="M20 7 9 18l-5-5"/></svg></div><h4>Heal</h4><p>Evidence‑based care for lasting well‑being.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="sec" id="services">
+  <div class="wrap">
+    <div class="head"><div class="k">Our services</div><h2>Comprehensive behavioral health care</h2><p>Whatever you're facing, we bring clarity, compassion and a plan built around you.</p></div>
+    <div class="grid">
+      <div class="svc"><div class="ic"><svg viewBox="0 0 24 24"><path d="M9 3h6l1 4H8z"/><rect x="6" y="7" width="12" height="14" rx="2"/><path d="M12 11v6M9 14h6"/></svg></div><h3>Psychiatric Evaluations</h3><p>Thorough assessments to understand your symptoms and build an accurate diagnosis and care plan.</p></div>
+      <div class="svc"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="13" height="8" rx="4"/><path d="M16 12h5M9.5 10v4M7.5 12h4"/></svg></div><h3>Medication Management</h3><p>Careful prescribing, monitoring and adjustment to find what works best — safely and effectively.</p></div>
+      <div class="svc"><div class="ic"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4L3 21l1.1-3.3A8.4 8.4 0 1 1 21 11.5z"/></svg></div><h3>Therapy &amp; Counseling</h3><p>Supportive, evidence‑based talk therapy to help you process, cope and move forward.</p></div>
+      <div class="svc"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg></div><h3>Behavioral Health Support</h3><p>Ongoing support for everyday challenges, coping skills and sustaining your progress.</p></div>
+      <div class="svc"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10.5" r="2.4"/></svg></div><h3>Telehealth &amp; In‑Person</h3><p>Secure video visits from home across Texas, or in person at our Katy office — your choice.</p></div>
+      <div class="svc"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.3"/><path d="M3 20c0-3 2.2-5 5-5s5 2 5 5M14 20c0-2 1-3.6 2.6-4.4"/></svg></div><h3>Care for All Ages</h3><p>Compassionate psychiatric care for children, adolescents and adults alike.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Conditions -->
+<section class="sec cream" id="conditions">
+  <div class="wrap">
+    <div class="head"><div class="k">We manage</div><h2>Conditions we treat</h2><p>Expert, personalized care for a wide range of mental health concerns.</p></div>
+    <div class="conds">
+      <div class="cond"><span></span>Anxiety</div>
+      <div class="cond"><span></span>Depression</div>
+      <div class="cond"><span></span>Schizophrenia</div>
+      <div class="cond"><span></span>Bipolar Disorder</div>
+      <div class="cond"><span></span>ADHD</div>
+      <div class="cond"><span></span>OCD</div>
+      <div class="cond"><span></span>Insomnia</div>
+      <div class="cond"><span></span>Autism</div>
+      <div class="cond"><span></span>Stress / PTSD</div>
+      <div class="cond"><span></span>Eating Disorders</div>
+    </div>
+  </div>
+</section>
+
+<!-- Insurance -->
+<section class="sec" id="insurance">
+  <div class="wrap">
+    <div class="head"><div class="k">Insurance &amp; payment</div><h2>Care that's within reach</h2><p>We make getting started simple — verify your benefits when you book.</p></div>
+    <div class="ins">
+      <div class="panel">
+        <h3>Insurance accepted</h3>
+        <p id="insIntro">We accept many major insurance plans. Share your insurance when you book and we'll verify your benefits for you.</p>
+        <div class="chips" id="insChips"><span class="chip">Verify your benefits when you book</span></div>
+      </div>
+      <div class="panel">
+        <h3>Self‑pay &amp; cards</h3>
+        <p>Prefer to pay directly? We welcome self‑pay patients.</p>
+        <ul class="pay-list">
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg>Major credit &amp; debit cards</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg>HSA / FSA accepted</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7"/></svg>Transparent, upfront pricing</li>
+        </ul>
+        <button class="btn btn-navy" style="margin-top:14px" onclick="openBook()">Book &amp; verify benefits</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="sec soft" id="contact">
+  <div class="wrap">
+    <div class="head"><div class="k">Get in touch</div><h2>Visit us or connect online</h2></div>
+    <div class="contact">
+      <div class="cinfo">
+        <div class="ci"><div class="ic"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></div><div><b>Call or text</b><span id="cPhone">(281) 270‑8451</span></div></div>
+        <div class="ci"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z" fill="none"/><path d="M3 7l9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg></div><div><b>Email</b><span id="cEmail">info@goldencrossmhbc.com</span></div></div>
+        <div class="ci"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5-7-11a7 7 0 0 1 14 0c0 6-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></div><div><b>Office</b><span id="cAddr">25807 Westheimer, Suite 300, Katy, TX 77494</span></div></div>
+        <div class="ci"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><b>Hours</b><span id="cHours">Monday – Friday · 9:00 AM – 5:00 PM</span></div></div>
+        <a class="btn btn-outline" id="mapLink" href="https://maps.google.com/?q=25807+Westheimer+Suite+300+Katy+TX+77494" target="_blank" rel="noopener">Open in Google Maps →</a>
+      </div>
+      <div class="cta-band">
+        <h3>Ready to feel better?</h3>
+        <p>Book a confidential appointment — telehealth or in person.</p>
+        <button class="btn btn-navy" onclick="openBook()">Book an appointment</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="brand" style="margin-bottom:10px">
+          <svg class="logo" viewBox="0 0 64 64"><circle cx="32" cy="30" r="29" fill="none" stroke="#c79a2a" stroke-width="2.5"/><path d="M32 6v10M27 11h10" stroke="#c79a2a" stroke-width="5" stroke-linecap="round"/><circle cx="32" cy="27" r="4.4" fill="#e3bf5e"/><path d="M32 31c-7 0-12 4-12 11h24c0-7-5-11-12-11z" fill="#e3bf5e"/><path d="M14 40c2-9 9-13 18-13s16 4 18 13" fill="none" stroke="#c79a2a" stroke-width="3.4" stroke-linecap="round"/></svg>
+          <div class="bt"><b style="color:#fff;font-family:var(--ff-d);font-size:16px"><em style="color:var(--gold2);font-style:normal">Golden Cross</em> Mental Health</b><span style="color:rgba(255,255,255,.55);font-size:10px;letter-spacing:.14em;text-transform:uppercase">&amp; Behavioral Center</span></div>
+        </div>
+        <p style="max-width:320px;font-size:13.5px">Compassionate psychiatric care for children, adolescents and adults — in Katy, TX and across Texas by telehealth.</p>
+        <div class="crisis"><b style="color:#fff">In crisis?</b> If you or someone you know is in emotional distress or danger, call or text <b style="color:var(--gold2)">988</b> (Suicide &amp; Crisis Lifeline), or dial <b style="color:var(--gold2)">911</b>. Golden Cross does not provide emergency services.</div>
+      </div>
+      <div><h4>Explore</h4><a href="#about">About</a><a href="#services">Services</a><a href="#conditions">We Manage</a><a href="#insurance">Insurance</a><a href="#contact">Contact</a></div>
+      <div><h4>Contact</h4><a id="fPhone" href="tel:+12812708451">(281) 270‑8451</a><a id="fEmail" href="mailto:info@goldencrossmhbc.com">info@goldencrossmhbc.com</a><a id="fAddr" href="https://maps.google.com/?q=25807+Westheimer+Suite+300+Katy+TX+77494" target="_blank" rel="noopener">25807 Westheimer, Suite 300<br>Katy, TX 77494</a><a href="admin.html" style="opacity:.5;font-size:12px;margin-top:10px">Staff admin</a></div>
+    </div>
+    <div class="foot-bottom">
+      <div>© <span id="yr"></span> Golden Cross Mental Health and Behavioral Center. All rights reserved.</div>
+      <div>Your Mental Health. Our Priority.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- Booking modal -->
+<div class="modal" id="bookModal">
+  <div class="mbox">
+    <button class="mx" onclick="closeBook()" aria-label="Close">×</button>
+    <div class="mpad" id="bookInner">
+      <h3>Book an appointment</h3>
+      <div class="sub">Tell us a little about you and we'll reach out to confirm your visit.</div>
+      <div class="two"><div><label>Full name *</label><input id="b_name"></div><div><label>Phone *</label><input id="b_phone"></div></div>
+      <label>Email *</label><input id="b_email" type="email">
+      <div class="two"><div><label>Who is this for?</label><select id="b_for"><option>Myself</option><option>My child / dependent</option><option>Someone I care for</option></select></div><div><label>Preferred date</label><input id="b_date" type="date"></div></div>
+      <label>Visit type</label>
+      <div class="seg" id="segVisit"><button type="button" class="on" data-v="Telehealth" onclick="pickSeg('segVisit',this)">Telehealth</button><button type="button" data-v="In‑person" onclick="pickSeg('segVisit',this)">In‑person</button></div>
+      <label>What brings you in?</label>
+      <select id="b_concern"><option>Psychiatric evaluation</option><option>Medication management</option><option>Therapy &amp; counseling</option><option>Follow‑up</option><option>Not sure / other</option></select>
+      <label>Payment</label>
+      <div class="seg" id="segPay"><button type="button" class="on" data-v="Insurance" onclick="pickSeg('segPay',this);payToggle()">Use insurance</button><button type="button" data-v="Self‑pay / card" onclick="pickSeg('segPay',this);payToggle()">Self‑pay / card</button></div>
+      <div id="insBox"><label>Insurance (optional)</label><input id="b_ins" placeholder="e.g. Blue Cross, Aetna, Cigna…"></div>
+      <label>Anything else? (optional)</label><textarea id="b_notes"></textarea>
+      <div style="margin-top:16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <button class="btn btn-gold" id="bookBtn" onclick="submitBook()">Request appointment</button>
+        <span class="mmsg" id="bookMsg"></span>
+      </div>
+      <p style="font-size:12px;color:var(--ink3);margin-top:12px">By submitting you agree to be contacted about your request. For emergencies call 988 or 911.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+var DEFAULT_CFG={
+  provider:"Patricia Ayika, PMHNP‑BC",
+  role:"Psychiatric Mental Health Nurse Practitioner",
+  phone:"(281) 270‑8451",
+  email:"info@goldencrossmhbc.com",
+  address:"25807 Westheimer, Suite 300, Katy, TX 77494",
+  hours:"Monday – Friday · 9:00 AM – 5:00 PM",
+  bio:"",
+  mission:"",
+  heroSub:"",
+  insIntro:"",
+  insurers:[],
+  paymentLink:"",
+  bookingEndpoint:""
+};
+var CFG=Object.assign({},DEFAULT_CFG);
+try{var saved=JSON.parse(localStorage.getItem('gc_cfg')||'{}');CFG=Object.assign(CFG,saved||{});}catch(e){}
+
+function digits(s){return (s||'').replace(/[^0-9]/g,'');}
+function applyCfg(){
+  var set=function(id,v){var el=document.getElementById(id);if(el&&v)el.textContent=v;};
+  set('heroName',CFG.provider);set('aboutName',CFG.provider);
+  if(CFG.role){var r=document.querySelector('.about .role');if(r)r.textContent=CFG.role;}
+  set('navPhone',CFG.phone);set('cPhone',CFG.phone);set('cEmail',CFG.email);set('cAddr',CFG.address);set('cHours',CFG.hours);
+  if(CFG.hours){var hh=CFG.hours.replace(/^.*·\s*/,'');set('heroHours',hh);}
+  if(CFG.bio)set('bio',CFG.bio);
+  if(CFG.mission)set('mission',CFG.mission);
+  if(CFG.heroSub)set('heroSub',CFG.heroSub);
+  if(CFG.insIntro)set('insIntro',CFG.insIntro);
+  var ph=digits(CFG.phone);
+  if(ph){var tel='tel:+1'+ph;['heroCall','fPhone'].forEach(function(id){var a=document.getElementById(id);if(a)a.href=tel;});var hc=document.getElementById('heroCall');if(hc)hc.textContent='📞 '+CFG.phone;}
+  if(CFG.email){var fe=document.getElementById('fEmail');if(fe){fe.href='mailto:'+CFG.email;fe.textContent=CFG.email;}}
+  if(CFG.address){var q='https://maps.google.com/?q='+encodeURIComponent(CFG.address);['mapLink','fAddr'].forEach(function(id){var a=document.getElementById(id);if(a)a.href=q;});var fa=document.getElementById('fAddr');if(fa)fa.textContent=CFG.address;}
+  // insurance chips
+  var chips=document.getElementById('insChips');
+  if(chips){
+    if(CFG.insurers&&CFG.insurers.length){chips.innerHTML=CFG.insurers.map(function(n){return '<span class="chip">'+esc(n)+'</span>';}).join('');}
+  }
+  document.getElementById('yr').textContent=new Date().getFullYear();
+}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+/* booking */
+function openBook(){document.getElementById('bookModal').classList.add('open');document.body.style.overflow='hidden';var d=document.getElementById('b_date');if(d&&!d.value)d.value=new Date(Date.now()+864e5).toISOString().slice(0,10);}
+function closeBook(){document.getElementById('bookModal').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('bookModal').addEventListener('click',function(e){if(e.target===this)closeBook();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeBook();});
+function closeMob(){document.getElementById('mob').classList.remove('open');}
+function pickSeg(group,btn){document.querySelectorAll('#'+group+' button').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');}
+function segVal(group){var b=document.querySelector('#'+group+' button.on');return b?b.getAttribute('data-v'):'';}
+function payToggle(){document.getElementById('insBox').style.display=(segVal('segPay')==='Insurance')?'block':'none';}
+function val(id){var el=document.getElementById(id);return el?el.value.trim():'';}
+function bmsg(t,c){var m=document.getElementById('bookMsg');m.textContent=t;m.className='mmsg '+(c||'');}
+
+function submitBook(){
+  if(!val('b_name')||!val('b_phone')||!val('b_email')){bmsg('Please enter your name, phone and email.','bad');return;}
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val('b_email'))){bmsg('Enter a valid email.','bad');return;}
+  var ref='GC-'+Math.random().toString(36).slice(2,7).toUpperCase();
+  var pay=segVal('segPay');
+  var rec={ref:ref,name:val('b_name'),phone:val('b_phone'),email:val('b_email'),forWho:val('b_for'),date:val('b_date'),visit:segVal('segVisit'),concern:val('b_concern'),payment:pay,insurance:(pay==='Insurance'?val('b_ins'):''),notes:val('b_notes'),created:new Date().toISOString()};
+  try{var bk=JSON.parse(localStorage.getItem('gc_bookings')||'[]');bk.unshift(rec);localStorage.setItem('gc_bookings',JSON.stringify(bk));}catch(e){}
+  var btn=document.getElementById('bookBtn');btn.disabled=true;bmsg('Sending…','');
+  var finish=function(){
+    document.getElementById('bookInner').innerHTML='<div style="text-align:center;padding:14px 4px"><div style="width:64px;height:64px;border-radius:50%;background:#e6f6ee;display:grid;place-items:center;margin:0 auto 14px"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#1a9c6b" stroke-width="3"><path d="M5 12l4 4L19 7"/></svg></div><h3>Request received</h3><p style="color:var(--ink3);margin-top:8px">Thank you, '+esc(rec.name)+'. We’ll reach out shortly to confirm your appointment ('+esc(ref)+').</p>'+(CFG.paymentLink&&pay!=='Insurance'?('<a class="btn btn-gold" style="margin-top:16px" target="_blank" rel="noopener" href="'+esc(CFG.paymentLink)+'">Pay / reserve your visit →</a>'):'')+'<div style="margin-top:14px"><button class="btn btn-outline" onclick="closeBook()">Close</button></div></div>';
+  };
+  if(CFG.bookingEndpoint){
+    var body={_subject:'New appointment request '+ref+' — '+rec.name,_template:'box',Reference:ref,Name:rec.name,Phone:rec.phone,Email:rec.email,For:rec.forWho,Preferred_Date:rec.date||'(flexible)',Visit_Type:rec.visit,Concern:rec.concern,Payment:rec.payment,Insurance:rec.insurance||'(n/a)',Notes:rec.notes||'(none)'};
+    fetch(CFG.bookingEndpoint,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(body)}).then(finish).catch(finish);
+  }else{ setTimeout(finish,500); }
+}
+applyCfg();payToggle();
+</script>
+</body>
+</html>
