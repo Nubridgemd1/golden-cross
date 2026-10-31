@@ -68,6 +68,7 @@
   <div class="tabs">
     <button class="on" onclick="tab('update',this)">Update</button>
     <button onclick="tab('ins',this)">Insurances</button>
+    <button onclick="tab('photos',this)">Photos</button>
     <button onclick="tab('book',this)">Bookings</button>
     <button onclick="tab('set',this)">Settings</button>
   </div>
@@ -75,7 +76,7 @@
   <div class="pane on" id="p-update">
     <div class="card">
       <h3 style="font-size:17px;margin-bottom:4px">Practice details</h3>
-      <p class="note">Changes appear on the website on this device/browser. (For edits to show on every visitor's device, a backend sync can be added — ask us.)</p>
+      <p class="note">Changes publish to the live website for <b>everyone, on every device</b> when you press Save changes.</p>
       <div class="two"><div><label>Provider name &amp; credentials</label><input id="c_provider"></div><div><label>Role / title</label><input id="c_role"></div></div>
       <div class="two"><div><label>Phone</label><input id="c_phone"></div><div><label>Business email</label><input id="c_email"></div></div>
       <label>Office address</label><input id="c_address">
@@ -97,6 +98,14 @@
       <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap"><input id="insInput" placeholder="e.g. Blue Cross Blue Shield" style="flex:1;min-width:200px" onkeydown="if(event.key==='Enter'){addIns();event.preventDefault();}"><button class="btn btn-navy" onclick="addIns()">Add</button></div>
       <div class="chips" id="insList"></div>
       <p class="note" style="margin-top:14px">Tip: you can paste several at once separated by commas, then press Add.</p>
+    </div>
+  </div>
+
+  <div class="pane" id="p-photos">
+    <div class="card">
+      <h3 style="font-size:17px;margin-bottom:4px">Photos</h3>
+      <p class="note">Upload the provider headshot and the "A glimpse of our care" reel photos. Upload from <b>any device</b> (your phone's camera or gallery works) — changes publish to the live site for everyone automatically.</p>
+      <div id="photoList" style="margin-top:14px"></div>
     </div>
   </div>
 
@@ -124,6 +133,7 @@
   <span class="msg" id="msg"></span>
 </div>
 
+<script src="assets/gc-sync.js"></script>
 <script>
 var DEFPASS="goldencross2026";
 var FIELDS=["provider","role","phone","email","address","hours","heroSub","bio","mission","insIntro","paymentLink","bookingEndpoint"];
@@ -137,7 +147,7 @@ function setMsg(t,c){var m=document.getElementById('msg');m.textContent=t;m.clas
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 
 function fillForm(){FIELDS.forEach(function(k){var el=document.getElementById('c_'+k);if(el)el.value=CFG[k]||'';});renderIns();renderBk();}
-function tab(name,btn){document.querySelectorAll('.tabs button').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');document.querySelectorAll('.pane').forEach(function(p){p.classList.remove('on');});document.getElementById('p-'+name).classList.add('on');if(name==='book')renderBk();}
+function tab(name,btn){document.querySelectorAll('.tabs button').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');document.querySelectorAll('.pane').forEach(function(p){p.classList.remove('on');});document.getElementById('p-'+name).classList.add('on');if(name==='book')renderBk();if(name==='photos')renderPhotos();}
 
 /* insurances */
 function renderIns(){var el=document.getElementById('insList');el.innerHTML=CFG.insurers.length?CFG.insurers.map(function(n,i){return '<span class="chip">'+esc(n)+'<button onclick="delIns('+i+')" title="Remove">×</button></span>';}).join(''):'<span class="note">No insurers added — site shows the generic message.</span>';}
@@ -150,12 +160,69 @@ function renderBk(){var bk=bookings();document.getElementById('bkCount').textCon
 function exportBk(){var bk=bookings();var head=['Ref','Name','Phone','Email','For','Visit','Concern','Payment','Insurance','Date','Notes','Created'];var rows=bk.map(function(b){return [b.ref,b.name,b.phone,b.email,b.forWho,b.visit,b.concern,b.payment,b.insurance,b.date,(b.notes||'').replace(/\n/g,' '),b.created];});var csv=[head].concat(rows).map(function(r){return r.map(function(c){return '"'+String(c==null?'':c).replace(/"/g,'""')+'"';}).join(',');}).join('\n');var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='golden-cross-bookings.csv';a.click();}
 function clearBk(){if(confirm('Delete all appointment requests on this device?')){localStorage.setItem('gc_bookings','[]');renderBk();}}
 
-/* save */
-function saveAll(){FIELDS.forEach(function(k){CFG[k]=val('c_'+k).trim();});localStorage.setItem('gc_cfg',JSON.stringify(CFG));setMsg('✓ Saved. Refresh the site to see changes.','ok');}
+/* save (local cache + shared store so edits show on every device) */
+function saveAll(){
+  FIELDS.forEach(function(k){CFG[k]=val('c_'+k).trim();});
+  localStorage.setItem('gc_cfg',JSON.stringify(CFG));
+  if(window.GCSync){ setMsg('Saving…',''); GCSync.setConfig(CFG).then(function(ok){ setMsg(ok?'✓ Saved & published to all devices.':'✓ Saved on this device (sync unavailable).',ok?'ok':'bad'); }); }
+  else setMsg('✓ Saved on this device.','ok');
+}
+
+/* ── Photos (headshot + reel), uploaded to the shared store → live on every device ── */
+function pexel(id){return 'https://images.pexels.com/photos/'+id+'/pexels-photo-'+id+'.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=400&h=300';}
+var REEL_DEF=[['Truly heard',pexel(7579831)],['A warm welcome','assets/warm-welcome.jpg'],['Expert care','assets/expert-care.png'],['Telehealth visits','assets/telehealth.png'],['Our approach',pexel(6129507)],['Support that helps',pexel(3931633)],['A steady partner',pexel(3153201)],['You are not alone','assets/not-alone.jpg'],['Careful assessment',pexel(5407206)],['Compassionate care',pexel(5452293)]];
+var IMAGES={};
+try{IMAGES=JSON.parse(localStorage.getItem('gc_images')||'{}');}catch(e){IMAGES={}}
+if(!IMAGES.reel)IMAGES.reel={};
+function slug(s){return String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');}
+function photoRow(kind,cap,def,cur){
+  var over=cur&&cur!==def;
+  return '<div style="display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:9px">'
+    +'<img src="'+esc(cur||def)+'" alt="" style="width:78px;height:58px;object-fit:cover;border-radius:8px;border:1px solid var(--line);background:var(--bg);flex:none">'
+    +'<div style="flex:1;min-width:0"><div style="font-weight:600;font-size:14px;color:var(--navy)">'+esc(cap)+'</div>'
+    +'<div style="display:flex;gap:8px;margin-top:7px;flex-wrap:wrap"><label class="btn btn-gold" style="cursor:pointer;padding:8px 15px;font-size:13px">Upload<input type="file" accept="image/*" style="display:none" onchange="uploadSlot(\''+kind+'\',\''+esc(cap).replace(/'/g,"\\'")+'\',this)"></label>'
+    +(over?'<button class="btn btn-ghost" style="padding:8px 14px;font-size:13px" onclick="resetSlot(\''+kind+'\',\''+esc(cap).replace(/'/g,"\\'")+'\')">Reset</button>':'')+'</div></div></div>';
+}
+function renderPhotos(){
+  var el=document.getElementById('photoList'); if(!el) return;
+  var h='<div style="font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin:4px 0 8px">Provider headshot</div>';
+  h+=photoRow('headshot','Headshot (hero &amp; about)','assets/patricia.png',IMAGES.headshot);
+  h+='<div style="font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin:16px 0 8px">Care reel photos</div>';
+  REEL_DEF.forEach(function(r){ h+=photoRow('reel',r[0],r[1],(IMAGES.reel&&IMAGES.reel[r[0]])); });
+  el.innerHTML=h;
+}
+function compressImg(file,cb){
+  var fr=new FileReader();
+  fr.onload=function(){ var img=new Image();
+    img.onload=function(){ var max=1280,w=img.width,h=img.height; if(w>max||h>max){ if(w>=h){h=Math.round(h*max/w);w=max;} else {w=Math.round(w*max/h);h=max;} }
+      try{ var cv=document.createElement('canvas');cv.width=w;cv.height=h;cv.getContext('2d').drawImage(img,0,0,w,h);cv.toBlob(function(b){cb(b||file);},'image/jpeg',0.82); }catch(e){ cb(file); } };
+    img.onerror=function(){cb(file);}; img.src=fr.result; };
+  fr.readAsDataURL(file);
+}
+function saveImages(){localStorage.setItem('gc_images',JSON.stringify(IMAGES));if(window.GCSync)GCSync.setImages(IMAGES);}
+function uploadSlot(kind,cap,input){
+  var f=input.files&&input.files[0]; if(!f){return;} input.value='';
+  if(!window.GCSync){setMsg('Photo sync is unavailable right now.','bad');return;}
+  setMsg('Uploading photo…','');
+  compressImg(f,function(blob){
+    var name=(kind==='headshot'?'headshot':'reel-'+slug(cap))+'-'+Date.now()+'.jpg';
+    GCSync.uploadPhoto(name,blob).then(function(url){
+      if(!url){setMsg('Upload failed — please try again.','bad');return;}
+      if(kind==='headshot')IMAGES.headshot=url; else {IMAGES.reel=IMAGES.reel||{};IMAGES.reel[cap]=url;}
+      saveImages();renderPhotos();setMsg('✓ Photo published to all devices.','ok');
+    });
+  });
+}
+function resetSlot(kind,cap){ if(kind==='headshot')delete IMAGES.headshot; else if(IMAGES.reel)delete IMAGES.reel[cap]; saveImages();renderPhotos();setMsg('Reset to default.','ok'); }
 
 /* auth */
-function unlock(){var v=document.getElementById('pass').value;if(v===(localStorage.getItem('gc_pass')||DEFPASS)){document.getElementById('gate').style.display='none';sessionStorage.setItem('gc_auth','1');}else{document.getElementById('gateErr').textContent='Incorrect passcode.';}}
-if(sessionStorage.getItem('gc_auth')==='1')document.getElementById('gate').style.display='none';
+function pullShared(){
+  if(!window.GCSync)return;
+  GCSync.getConfig().then(function(c){ if(c){ CFG=Object.assign(CFG,c); localStorage.setItem('gc_cfg',JSON.stringify(CFG)); fillForm(); } });
+  GCSync.getImages().then(function(im){ if(im){ IMAGES=im; if(!IMAGES.reel)IMAGES.reel={}; localStorage.setItem('gc_images',JSON.stringify(IMAGES)); renderPhotos(); } });
+}
+function unlock(){var v=document.getElementById('pass').value;if(v===(localStorage.getItem('gc_pass')||DEFPASS)){document.getElementById('gate').style.display='none';sessionStorage.setItem('gc_auth','1');pullShared();}else{document.getElementById('gateErr').textContent='Incorrect passcode.';}}
+if(sessionStorage.getItem('gc_auth')==='1'){document.getElementById('gate').style.display='none';pullShared();}
 function changePass(){var a=document.getElementById('np1').value,b=document.getElementById('np2').value,pm=document.getElementById('passMsg');if(a.length<4){pm.textContent='Use at least 4 characters.';pm.className='note bad';return;}if(a!==b){pm.textContent='The two entries don’t match.';pm.className='note bad';return;}localStorage.setItem('gc_pass',a);document.getElementById('np1').value='';document.getElementById('np2').value='';pm.textContent='Passcode updated.';pm.className='note ok';}
 
 fillForm();
