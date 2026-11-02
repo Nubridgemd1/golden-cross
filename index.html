@@ -481,7 +481,8 @@ function applyCfg(){
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 
 /* booking */
-function openBook(){document.getElementById('bookModal').classList.add('open');document.body.style.overflow='hidden';var d=document.getElementById('b_date');if(d&&!d.value)d.value=new Date(Date.now()+864e5).toISOString().slice(0,10);}
+var BOOK_FORM_HTML=(document.getElementById('bookInner')||{}).innerHTML||'';
+function openBook(){var bi=document.getElementById('bookInner');if(bi&&BOOK_FORM_HTML&&!document.getElementById('b_name')){bi.innerHTML=BOOK_FORM_HTML;}document.getElementById('bookModal').classList.add('open');document.body.style.overflow='hidden';var d=document.getElementById('b_date');if(d&&!d.value)d.value=new Date(Date.now()+864e5).toISOString().slice(0,10);}
 function closeBook(){document.getElementById('bookModal').classList.remove('open');document.body.style.overflow='';}
 document.getElementById('bookModal').addEventListener('click',function(e){if(e.target===this)closeBook();});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeBook();});
