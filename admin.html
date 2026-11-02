@@ -208,7 +208,7 @@ function addIns(){var inp=document.getElementById('insInput');var raw=inp.value.
 function delIns(i){CFG.insurers.splice(i,1);renderIns();}
 
 /* bookings */
-var BOOKING_API="";
+var BOOKING_API="https://goldencross-bookings.goldencross-bookings.workers.dev";
 var SERVER_BK=[], _bkSyncedOnce=false;
 function bookings(){try{return JSON.parse(localStorage.getItem('gc_bookings')||'[]');}catch(e){return [];}}
 function bkKey(){try{return localStorage.getItem('gc_book_key')||'';}catch(e){return '';}}

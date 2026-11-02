@@ -455,7 +455,7 @@ var DEFAULT_CFG={
 };
 var CFG=Object.assign({},DEFAULT_CFG);
 // Private bookings backend (Cloudflare Worker). Empty = email + per-device only.
-var BOOKING_API="";
+var BOOKING_API="https://goldencross-bookings.goldencross-bookings.workers.dev";
 try{var saved=JSON.parse(localStorage.getItem('gc_cfg')||'{}');CFG=Object.assign(CFG,saved||{});}catch(e){}
 
 function digits(s){return (s||'').replace(/[^0-9]/g,'');}
