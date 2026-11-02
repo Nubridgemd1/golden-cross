@@ -454,6 +454,8 @@ var DEFAULT_CFG={
   bookingEndpoint:"https://formsubmit.co/ajax/info@goldencrossmentalhealthbc.com"
 };
 var CFG=Object.assign({},DEFAULT_CFG);
+// Private bookings backend (Cloudflare Worker). Empty = email + per-device only.
+var BOOKING_API="";
 try{var saved=JSON.parse(localStorage.getItem('gc_cfg')||'{}');CFG=Object.assign(CFG,saved||{});}catch(e){}
 
 function digits(s){return (s||'').replace(/[^0-9]/g,'');}
@@ -500,6 +502,7 @@ function submitBook(){
   var pay=segVal('segPay');
   var rec={ref:ref,name:val('b_name'),phone:val('b_phone'),email:val('b_email'),forWho:val('b_for'),date:val('b_date'),visit:segVal('segVisit'),concern:val('b_concern'),payment:pay,insurance:(pay==='Insurance'?val('b_ins'):''),notes:val('b_notes'),created:new Date().toISOString()};
   try{var bk=JSON.parse(localStorage.getItem('gc_bookings')||'[]');bk.unshift(rec);localStorage.setItem('gc_bookings',JSON.stringify(bk));}catch(e){}
+  if(BOOKING_API){try{fetch(BOOKING_API.replace(/\/+$/,'')+'/booking',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(rec)});}catch(e){}}
   var btn=document.getElementById('bookBtn');btn.disabled=true;bmsg('Sending…','');
   var finish=function(){
     document.getElementById('bookInner').innerHTML='<div style="text-align:center;padding:14px 4px"><div style="width:64px;height:64px;border-radius:50%;background:#e6f6ee;display:grid;place-items:center;margin:0 auto 14px"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#1a9c6b" stroke-width="3"><path d="M5 12l4 4L19 7"/></svg></div><h3>Request received</h3><p style="color:var(--ink3);margin-top:8px">Thank you, '+esc(rec.name)+'. We’ll reach out shortly to confirm your appointment ('+esc(ref)+').</p>'+(CFG.paymentLink&&pay!=='Insurance'?('<a class="btn btn-gold" style="margin-top:16px" target="_blank" rel="noopener" href="'+esc(CFG.paymentLink)+'">Pay / reserve your visit →</a>'):'')+'<div style="margin-top:14px"><button class="btn btn-outline" onclick="closeBook()">Close</button></div></div>';
