@@ -451,7 +451,7 @@ var DEFAULT_CFG={
   insIntro:"",
   insurers:[],
   paymentLink:"",
-  bookingEndpoint:""
+  bookingEndpoint:"https://formsubmit.co/ajax/info@goldencrossmentalhealthbc.com"
 };
 var CFG=Object.assign({},DEFAULT_CFG);
 try{var saved=JSON.parse(localStorage.getItem('gc_cfg')||'{}');CFG=Object.assign(CFG,saved||{});}catch(e){}
@@ -503,10 +503,11 @@ function submitBook(){
   var finish=function(){
     document.getElementById('bookInner').innerHTML='<div style="text-align:center;padding:14px 4px"><div style="width:64px;height:64px;border-radius:50%;background:#e6f6ee;display:grid;place-items:center;margin:0 auto 14px"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#1a9c6b" stroke-width="3"><path d="M5 12l4 4L19 7"/></svg></div><h3>Request received</h3><p style="color:var(--ink3);margin-top:8px">Thank you, '+esc(rec.name)+'. We’ll reach out shortly to confirm your appointment ('+esc(ref)+').</p>'+(CFG.paymentLink&&pay!=='Insurance'?('<a class="btn btn-gold" style="margin-top:16px" target="_blank" rel="noopener" href="'+esc(CFG.paymentLink)+'">Pay / reserve your visit →</a>'):'')+'<div style="margin-top:14px"><button class="btn btn-outline" onclick="closeBook()">Close</button></div></div>';
   };
-  if(CFG.bookingEndpoint){
-    var body={_subject:'New appointment request '+ref+' — '+rec.name,_template:'box',Reference:ref,Name:rec.name,Phone:rec.phone,Email:rec.email,For:rec.forWho,Preferred_Date:rec.date||'(flexible)',Visit_Type:rec.visit,Concern:rec.concern,Payment:rec.payment,Insurance:rec.insurance||'(n/a)',Notes:rec.notes||'(none)'};
-    fetch(CFG.bookingEndpoint,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(body)}).then(finish).catch(finish);
-  }else{ setTimeout(finish,500); }
+  // Every booking is emailed. Falls back to FormSubmit → info@goldencrossmentalhealthbc.com
+  // even if the admin endpoint is blank, so no request is ever silently dropped.
+  var endpoint=CFG.bookingEndpoint||'https://formsubmit.co/ajax/info@goldencrossmentalhealthbc.com';
+  var body={_subject:'New appointment request '+ref+' — '+rec.name,_template:'box',_captcha:'false',Reference:ref,Name:rec.name,Phone:rec.phone,Email:rec.email,For:rec.forWho,Preferred_Date:rec.date||'(flexible)',Visit_Type:rec.visit,Concern:rec.concern,Payment:rec.payment,Insurance:rec.insurance||'(n/a)',Notes:rec.notes||'(none)'};
+  fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(body)}).then(finish).catch(finish);
 }
 /* ── Services photo reel (images reused from Oasis Behavioral) ── */
 function pexel(id,w,h){return 'https://images.pexels.com/photos/'+id+'/pexels-photo-'+id+'.jpeg?auto=compress&cs=tinysrgb&fit=crop&w='+(w||600)+'&h='+(h||440);}
