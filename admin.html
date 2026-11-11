@@ -371,7 +371,7 @@ function cardHTML(){
     +'<div style="position:relative;z-index:2;padding:54px 58px;height:100%;display:flex;flex-direction:column;justify-content:space-between">'
     +'<div style="display:flex;align-items:center;gap:18px"><div style="width:72px;height:72px;flex:none">'+LOGO_SVG+'</div><div><b style="font-family:Playfair Display,serif;font-size:30px;font-weight:800;line-height:1.05;display:block"><span style="color:#e3bf5e">Golden Cross</span><br>Mental Health &amp; Behavioral</b><span style="font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#bcd0ef">Compassionate care for a brighter tomorrow</span></div></div>'
     +'<div><div style="font-family:Playfair Display,serif;font-size:40px;font-weight:700">'+esc((CFG.provider||'').split(',')[0])+'</div><div style="color:#e3bf5e;font-weight:700;letter-spacing:.06em;font-size:17px;margin-top:4px">'+esc(((CFG.provider||'').split(',')[1]||'PMHNP‑BC').trim())+'</div><div style="color:rgba(255,255,255,.8);font-size:16px;margin-top:3px">'+esc(CFG.role||'')+'</div></div>'
-    +'<div style="font-family:Playfair Display,serif;font-style:italic;font-size:19px;color:#e3bf5e">“Your Mental Health. Our Priority.”</div>'
+    +'<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px"><div style="font-family:Playfair Display,serif;font-style:italic;font-size:19px;color:#e3bf5e;max-width:62%">“Your Mental Health. Our Priority.”</div><div style="text-align:center;flex:none"><img src="'+GC_QR+'" style="width:118px;height:118px;border-radius:10px;background:#fff;padding:6px;display:block"><div style="font-size:11px;color:#bcd0ef;margin-top:5px;letter-spacing:.03em">Scan to visit</div></div></div>'
     +'</div></div>';
   function row(ic,k,v){return '<div style="display:flex;align-items:center;gap:16px"><div style="width:46px;height:46px;border-radius:12px;background:#0b2a5c;display:grid;place-items:center;flex:none"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="#e3bf5e" stroke-width="1.9">'+ic+'</svg></div><div><div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#9aa6b8;font-weight:700">'+k+'</div><div style="font-size:18px;color:#1b2a41;font-weight:600">'+esc(v)+'</div></div></div>';}
   var back='<div style="width:1050px;height:600px;position:relative;overflow:hidden;font-family:Montserrat,sans-serif;color:#0b2a5c;background:#fff">'
@@ -389,11 +389,15 @@ function cardHTML(){
   return {front:front,back:back};
 }
 function renderCard(){var el=document.getElementById('cardArea');if(!el)return;var c=cardHTML();
+  try{var _q=new Image();_q.src=GC_QR;}catch(e){}
   el.innerHTML='<div class="gc-cardwrap">'
-    +'<div><div class="fname">Front</div><div class="fprev" style="width:525px;max-width:100%;aspect-ratio:1050/600;background:#0b2a5c"><div style="transform:scale(.5);transform-origin:top left;width:1050px;height:600px">'+c.front+'</div></div><div class="facts"><button class="p" onclick="dlCard(\'front\')">⬇ PNG</button><button onclick="printCard(\'front\')">🖨 Print</button><button onclick="shareCard(\'front\')">↗ Share</button></div></div>'
-    +'<div><div class="fname">Back</div><div class="fprev" style="width:525px;max-width:100%;aspect-ratio:1050/600;background:#fff"><div style="transform:scale(.5);transform-origin:top left;width:1050px;height:600px">'+c.back+'</div></div><div class="facts"><button class="p" onclick="dlCard(\'back\')">⬇ PNG</button><button onclick="printCard(\'back\')">🖨 Print</button><button onclick="shareCard(\'back\')">↗ Share</button></div></div>'
+    +'<div><div class="fname">Front</div><div class="fprev" style="width:100%;max-width:525px;aspect-ratio:1050/600;background:#0b2a5c"><div class="cardscale" style="transform-origin:top left;width:1050px;height:600px">'+c.front+'</div></div><div class="facts"><button class="p" onclick="dlCard(\'front\')">⬇ PNG</button><button onclick="printCard(\'front\')">🖨 Print</button><button onclick="shareCard(\'front\')">↗ Share</button></div></div>'
+    +'<div><div class="fname">Back</div><div class="fprev" style="width:100%;max-width:525px;aspect-ratio:1050/600;background:#fff"><div class="cardscale" style="transform-origin:top left;width:1050px;height:600px">'+c.back+'</div></div><div class="facts"><button class="p" onclick="dlCard(\'back\')">⬇ PNG</button><button onclick="printCard(\'back\')">🖨 Print</button><button onclick="shareCard(\'back\')">↗ Share</button></div></div>'
     +'</div>';
+  fitCard();
 }
+function fitCard(){var ps=document.querySelectorAll('#cardArea .fprev');for(var i=0;i<ps.length;i++){var fp=ps[i],inner=fp.querySelector('.cardscale');if(inner&&fp.clientWidth){inner.style.transform='scale('+(fp.clientWidth/1050)+')';}}}
+window.addEventListener('resize',function(){var p=document.getElementById('p-card');if(p&&p.classList.contains('on'))fitCard();});
 function cardSide(side){var c=cardHTML();return side==='front'?c.front:c.back;}
 function dlCard(s){capture(cardSide(s),function(cv){dlCanvas(cv,'GoldenCross-Card-'+s+'.png');});}
 function printCard(s){capture(cardSide(s),function(cv){printCanvas(cv,'Golden Cross card ('+s+')');});}
