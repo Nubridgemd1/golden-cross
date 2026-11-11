@@ -352,6 +352,8 @@
         <h3>Insurance accepted</h3>
         <p id="insIntro">We accept many major insurance plans. Share your insurance when you book and we'll verify your benefits for you.</p>
         <div class="chips" id="insChips"><span class="chip">Verify your benefits when you book</span></div>
+        <a id="headwayBtn" class="btn btn-gold" href="#" target="_blank" rel="noopener" style="margin-top:16px;display:none">Book &amp; pay with your insurance on Headway →</a>
+        <p id="headwayNote" style="font-size:12.5px;color:var(--ink3);margin-top:9px;display:none">Instantly check your coverage and self‑schedule with Patricia on Headway — most major insurance plans accepted.</p>
       </div>
       <div class="panel">
         <h3>Self‑pay &amp; cards</h3>
@@ -383,6 +385,10 @@
         <h3>Ready to feel better?</h3>
         <p>Book a confidential appointment — telehealth or in person.</p>
         <button class="btn btn-navy" onclick="openBook()">Book an appointment</button>
+        <div style="margin-top:22px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap">
+          <img src="data:image/png;base64,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" alt="Scan to visit goldencrossmentalhealthbc.com" width="104" height="104" style="border-radius:12px;background:#fff;padding:7px;box-shadow:0 3px 12px rgba(58,45,6,.2)">
+          <div style="font-size:13px;line-height:1.5;color:#3a2d06;text-align:left;max-width:210px"><b>Scan to visit our site</b><br><span style="color:#5a470f">Open &amp; share goldencrossmentalhealthbc.com</span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -416,6 +422,11 @@
     <div class="mpad" id="bookInner">
       <h3>Book an appointment</h3>
       <div class="sub">Tell us a little about you and we'll reach out to confirm your visit.</div>
+      <a id="hwModalBtn" href="#" target="_blank" rel="noopener" style="display:none;align-items:center;gap:12px;margin:4px 0 16px;padding:14px 16px;border-radius:12px;background:linear-gradient(135deg,#123c7e,#0b2a5c);color:#fff;text-decoration:none;line-height:1.3">
+        <span style="font-size:22px">🩺</span>
+        <span>Have insurance? <b style="color:#e3bf5e">Book instantly on Headway</b><br><span style="font-weight:400;font-size:12.5px;opacity:.85">Check coverage &amp; self‑schedule — most major plans accepted</span></span>
+      </a>
+      <div id="hwOr" style="display:none;text-align:center;color:var(--ink3);font-size:12.5px;margin:0 0 14px">— or request an appointment below —</div>
       <div class="two"><div><label>Full name *</label><input id="b_name"></div><div><label>Phone *</label><input id="b_phone"></div></div>
       <label>Email *</label><input id="b_email" type="email">
       <div class="two"><div><label>Who is this for?</label><select id="b_for"><option>Myself</option><option>My child / dependent</option><option>Someone I care for</option></select></div><div><label>Preferred date</label><input id="b_date" type="date"></div></div>
@@ -451,6 +462,7 @@ var DEFAULT_CFG={
   insIntro:"",
   insurers:[],
   paymentLink:"",
+  headwayLink:"https://care.headway.co/providers/patricia-ayika",
   bookingEndpoint:"https://formsubmit.co/ajax/info@goldencrossmentalhealthbc.com"
 };
 var CFG=Object.assign({},DEFAULT_CFG);
@@ -478,13 +490,20 @@ function applyCfg(){
   if(chips){
     if(CFG.insurers&&CFG.insurers.length){chips.innerHTML=CFG.insurers.map(function(n){return '<span class="chip">'+esc(n)+'</span>';}).join('');}
   }
+  applyHeadway();
   document.getElementById('yr').textContent=new Date().getFullYear();
+}
+function applyHeadway(){
+  var link=CFG.headwayLink||'';
+  var set=function(id,disp){var el=document.getElementById(id);if(el){if(link){el.href&&(el.href=link);el.style.display=disp;}else{el.style.display='none';}}};
+  set('headwayBtn','inline-block');set('headwayNote','block');
+  set('hwModalBtn','flex');set('hwOr','block');
 }
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 
 /* booking */
 var BOOK_FORM_HTML=(document.getElementById('bookInner')||{}).innerHTML||'';
-function openBook(){var bi=document.getElementById('bookInner');if(bi&&BOOK_FORM_HTML&&!document.getElementById('b_name')){bi.innerHTML=BOOK_FORM_HTML;}document.getElementById('bookModal').classList.add('open');document.body.style.overflow='hidden';var d=document.getElementById('b_date');if(d&&!d.value)d.value=new Date(Date.now()+864e5).toISOString().slice(0,10);}
+function openBook(){var bi=document.getElementById('bookInner');if(bi&&BOOK_FORM_HTML&&!document.getElementById('b_name')){bi.innerHTML=BOOK_FORM_HTML;}applyHeadway();document.getElementById('bookModal').classList.add('open');document.body.style.overflow='hidden';var d=document.getElementById('b_date');if(d&&!d.value)d.value=new Date(Date.now()+864e5).toISOString().slice(0,10);}
 function closeBook(){document.getElementById('bookModal').classList.remove('open');document.body.style.overflow='';}
 document.getElementById('bookModal').addEventListener('click',function(e){if(e.target===this)closeBook();});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeBook();});
