@@ -171,6 +171,29 @@
   .mmsg{font-size:13.5px;font-weight:600;margin-top:10px;min-height:18px}
   .ok{color:#1a9c6b}.bad{color:#c0392b}
 
+  /* ── Zocdoc booking band ── */
+  .zoc .zbox{display:grid;grid-template-columns:1.5fr .9fr;gap:34px;align-items:center;background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-radius:20px;padding:38px 40px;box-shadow:0 20px 48px rgba(11,42,92,.18);min-width:0}
+  .zoc .zbox>*{min-width:0}
+  .zoc .zbox h2{color:#fff;font-size:clamp(23px,3vw,30px);margin:0 0 10px}
+  .zoc .zbox p{color:#d7e3fb;font-size:15.5px;line-height:1.6;margin:0}
+  .zbadge{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--navy);font-weight:800;font-size:12.5px;padding:7px 14px;border-radius:999px;letter-spacing:.3px;margin-bottom:16px;text-transform:none}
+  .zbadge .zdot{width:9px;height:9px;border-radius:50%;background:#ff7a1a}
+  .zcta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+  .zcta .btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px}
+  .zoc .btn-outline{background:transparent;border:1.6px solid rgba(255,255,255,.55);color:#fff}
+  .zoc .btn-outline:hover{background:rgba(255,255,255,.1)}
+  .znote{font-size:12.5px;color:#aec4ec;margin-top:14px}
+  .zfeat{list-style:none;margin:0;padding:0;display:grid;gap:13px}
+  .zfeat li{display:flex;align-items:center;gap:11px;font-size:14.5px;font-weight:600;color:#eaf1ff}
+  .zfeat li svg{width:24px;height:24px;flex:none}
+  .navzoc{color:var(--gold)!important;font-weight:700!important}
+  @media(max-width:780px){
+    .zoc .zbox{grid-template-columns:1fr;padding:28px 22px;gap:22px}
+    .zcta .btn{flex:1 1 100%}
+    .zfeat{grid-template-columns:1fr 1fr;gap:12px 18px}
+  }
+  @media(max-width:420px){ .zfeat{grid-template-columns:1fr} }
+
   /* ── mobile polish: no horizontal overflow, names fully visible, aligned ── */
   html,body{overflow-x:hidden;max-width:100%}
   .hero .wrap>div, .about>div, .portrait, .cinfo, nav.links{min-width:0}
@@ -220,7 +243,7 @@
       <div class="bt"><b><em>Golden Cross</em><br>Mental Health &amp; Behavioral</b><span>Compassionate care · Katy, TX</span></div>
     </a>
     <nav class="links">
-      <a href="#about">About</a><a href="#services">Services</a><a href="#conditions">We Manage</a><a href="#insurance">Insurance</a><a href="#contact">Contact</a>
+      <a href="#about">About</a><a href="#services">Services</a><a href="#conditions">We Manage</a><a href="#insurance">Insurance</a><a href="#zocdoc" class="navzoc">Book on Zocdoc</a><a href="#contact">Contact</a>
     </nav>
     <div class="navcta">
       <div class="ph">Call us<br><b id="navPhone">(281) 270‑8451</b></div>
@@ -229,7 +252,7 @@
     </div>
   </div>
   <div class="mobmenu" id="mob">
-    <a href="#about" onclick="closeMob()">About</a><a href="#services" onclick="closeMob()">Services</a><a href="#conditions" onclick="closeMob()">We Manage</a><a href="#insurance" onclick="closeMob()">Insurance</a><a href="#contact" onclick="closeMob()">Contact</a>
+    <a href="#about" onclick="closeMob()">About</a><a href="#services" onclick="closeMob()">Services</a><a href="#conditions" onclick="closeMob()">We Manage</a><a href="#insurance" onclick="closeMob()">Insurance</a><a href="#zocdoc" class="navzoc" onclick="closeMob()">Book on Zocdoc</a><a href="#contact" onclick="closeMob()">Contact</a>
     <a href="#" onclick="closeMob();openBook();return false" style="color:var(--gold);font-weight:700">Book appointment →</a>
   </div>
 </header>
@@ -259,6 +282,30 @@
 </section>
 
 <!-- About + mission -->
+<!-- Zocdoc booking -->
+<section class="sec zoc" id="zocdoc">
+  <div class="wrap">
+    <div class="zbox">
+      <div class="zmain">
+        <span class="zbadge"><span class="zdot"></span>Zocdoc</span>
+        <h2>Book your appointment online</h2>
+        <p>Prefer to schedule instantly? Book your visit with Patricia on Zocdoc — see real‑time availability and choose a time that works for you, day or night, from any device. New patients welcome.</p>
+        <div class="zcta">
+          <a id="zocBtn" class="btn btn-gold" href="https://www.zocdoc.com/search" target="_blank" rel="noopener">Book on Zocdoc →</a>
+          <button type="button" class="btn btn-outline" onclick="openBook()">Or request here</button>
+        </div>
+        <p class="znote" id="zocNote">You'll be taken to Zocdoc to pick your time and confirm your appointment.</p>
+      </div>
+      <ul class="zfeat">
+        <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#c79a2a"/><path d="M7 12.5l3 3 7-7" fill="none" stroke="#0b2a5c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Real‑time availability</li>
+        <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#c79a2a"/><path d="M7 12.5l3 3 7-7" fill="none" stroke="#0b2a5c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Book in under 2 minutes</li>
+        <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#c79a2a"/><path d="M7 12.5l3 3 7-7" fill="none" stroke="#0b2a5c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Instant confirmation</li>
+        <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#c79a2a"/><path d="M7 12.5l3 3 7-7" fill="none" stroke="#0b2a5c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Secure &amp; private</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <section class="sec" id="about">
   <div class="wrap about">
     <div class="ph"><img id="aboutPhoto" src="assets/patricia.png" alt="Patricia Ayika, PMHNP-BC"></div>
@@ -463,6 +510,7 @@ var DEFAULT_CFG={
   insurers:[],
   paymentLink:"",
   headwayLink:"https://care.headway.co/providers/patricia-ayika",
+  zocdocLink:"https://www.zocdoc.com/search",
   bookingEndpoint:"https://formsubmit.co/ajax/info@goldencrossmentalhealthbc.com"
 };
 var CFG=Object.assign({},DEFAULT_CFG);
@@ -491,6 +539,7 @@ function applyCfg(){
     if(CFG.insurers&&CFG.insurers.length){chips.innerHTML=CFG.insurers.map(function(n){return '<span class="chip">'+esc(n)+'</span>';}).join('');}
   }
   applyHeadway();
+  applyZocdoc();
   document.getElementById('yr').textContent=new Date().getFullYear();
 }
 function applyHeadway(){
@@ -498,6 +547,14 @@ function applyHeadway(){
   var set=function(id,disp){var el=document.getElementById(id);if(el){if(link){el.href&&(el.href=link);el.style.display=disp;}else{el.style.display='none';}}};
   set('headwayBtn','inline-block');set('headwayNote','block');
   set('hwModalBtn','flex');set('hwOr','block');
+}
+function applyZocdoc(){
+  var link=CFG.zocdocLink||'';
+  var sec=document.getElementById('zocdoc');
+  var btn=document.getElementById('zocBtn');
+  var navs=document.querySelectorAll('.navzoc');
+  if(link){ if(btn)btn.href=link; if(sec)sec.style.display=''; navs.forEach(function(a){a.style.display='';}); }
+  else { if(sec)sec.style.display='none'; navs.forEach(function(a){a.style.display='none';}); }
 }
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 
